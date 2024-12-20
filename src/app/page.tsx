@@ -2,6 +2,7 @@
 import { useState } from "react";
 import api from "@/Api/api";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
@@ -10,6 +11,8 @@ export default function Home() {
   const [email, setEmail]     = useState("");
   const [senha, setSenha]     = useState("");
   const [message, setMessage] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +30,9 @@ export default function Home() {
         setEmail("");
         setIdade("");
         setSenha("");
+
+        router.push('/login');
+        
 
       } catch (err){
         if (err instanceof AxiosError) {
